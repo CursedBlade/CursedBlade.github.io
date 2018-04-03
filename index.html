@@ -1,0 +1,91 @@
+<script>
+    function generateArray() {
+        const N = Number(document.getElementById('input').value);
+        let array = new Array(N);
+
+        for (let i = 0; i < N; i++) {
+            array[i] = Math.random() * 1000
+        }
+
+        return array;
+    }
+
+    function bubbleSort(array) {
+        for(let i = 0; i < array.length - 1; i++) {
+            for(let j = 0; j < array.length - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    let swap = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = swap;
+                }
+            }
+        }
+    }
+
+    function sortArray() {
+        let array = generateArray();
+        const startTime = Number(new Date);
+        array.sort();
+        console.log('Array.prototype.sort for ' + array.length + ' elements done in ' + (Number(new Date) - startTime) + 'ms')
+    }
+
+    function bubbleSortArray() {
+        let array = generateArray();
+        const startTime = Number(new Date);
+        bubbleSort(array);
+        console.log('Bubble sort for ' + array.length + ' elements done in ' + (Number(new Date) - startTime) + 'ms')
+    }
+
+    function generateArrayOfStrings() {
+        const N = Number(document.getElementById('input2').value);
+        let array = new Array(N);
+
+        for (let i = 0; i < N; i++) {
+            array[i] = i % 2 === 0 ? 'чайка' : 'топот'
+        }
+
+        return array;
+    }
+
+    function isPalindrome(str) {
+        return str === str.split('').reverse().join('');
+    }
+
+    function isPalindrome2(str) {
+        let left = 0,
+            right = str.length - 1;
+
+        while (left < right) {
+            if (str[left] !== str[right]) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    function isPalindromeArray() {
+        let array = generateArrayOfStrings();
+        const startTime = Number(new Date);
+        array.forEach(isPalindrome);
+        console.log('Easy palindrome check for ' + array.length + ' elements done in ' + (Number(new Date) - startTime) + 'ms')
+    }
+
+    function isPalindrome2Array() {
+        let array = generateArrayOfStrings();
+        const startTime = Number(new Date);
+        array.forEach(isPalindrome2);
+        console.log('Effective palindrome check for ' + array.length + ' elements done in ' + (Number(new Date) - startTime) + 'ms')
+    }
+
+</script>
+
+<input id='input'>
+<button onClick='bubbleSortArray()'>bubbleSort</button>
+<button onClick='sortArray()'>Array.prototype.sort</button>
+<br/>
+<input id='input2'>
+<button onClick='isPalindromeArray()'>В лоб</button>
+<button onClick='isPalindrome2Array()'>Два указателя</button>
