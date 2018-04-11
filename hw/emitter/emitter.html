@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emitter</title>
+    <script src='emitter.js'></script>
+</head>
+<body>
+    <script>
+        const emitter = new Emitter();
+
+        const handler = function () {
+            alert('Работает!');
+        };
+
+        // подписали
+        emitter.on('event', handler);
+        // обработали событие
+        emitter.emit('event');
+        // отписали
+        emitter.off('event', handler);
+    </script>
+</body>
+</html>

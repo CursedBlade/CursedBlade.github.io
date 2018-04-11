@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suggest</title>
+    <script>
+        window.MAX_LEN = 10;
+    </script>
+    <script src='roads.js'></script>
+    <script src='algos/includes.js'></script>
+    <script src='algos/trie.js'></script>
+    <script>
+
+        function logArray() {
+            console.log(window.roads);
+        }
+
+        function fillArray() {
+            const fill = document.getElementById('fill').value;
+            const size = document.getElementById('size').value;
+            let array = new Array(size);
+
+            for(let i=0; i<size; i++)
+                array[i] = fill;
+
+            window.roads = array;
+        }
+
+        function multiplyArray(s) {
+            const size = s || document.getElementById('size').value;
+            let array = window.roads;
+            while(array.length < size) {
+                array = [
+                    ...array,
+                    ...array
+                ];
+            }
+
+            window.roads = array.slice(0, size);
+        }
+
+        function resetArray() {
+            window.roads = Array.from(window.defaultRoads);
+        }
+
+        resetArray();
+    </script>
+</head>
+<body>
+    <button onclick='logArray()'>Вывести массив</button>
+    <button onclick='resetArray()'>Сбросить массив</button>
+    <br/>
+    <input id='fill' placeholder='Чем заполнить' />
+    <input id='size' placeholder='Размер массива' />
+    <button onclick='fillArray()'>Заполнить</button>
+    <button onclick='multiplyArray()'>Размножить</button>
+    <button onclick='multiplyArray(100000)'>Размножить до ста тысяч</button>
+    <button onclick='multiplyArray(1000000)'>Размножить до миллиона</button>
+    <br/>
+
+    <input id='input' placeholder='Что ищем' />
+    <button onclick='console.log(includes(window.roads, document.getElementById("input").value, MAX_LEN))'>includes</button>
+    <button onclick='window.trie = new Trie(window.roads, MAX_LEN)'>build trie</button>
+    <button onclick='console.log(window.trie.find(document.getElementById("input").value))'>find in trie</button>
+</body>
+</html>
