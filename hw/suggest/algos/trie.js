@@ -72,6 +72,7 @@ class Trie {
     }
 
     find(input) {
+        input = input.toLowerCase();
         const prevDate = Number(new Date());
         // берем Set, чтобы избавиться от дублей
         const results = new Set();

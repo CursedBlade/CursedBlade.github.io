@@ -1,4 +1,5 @@
 function includes(arr, input, limit) {
+    input = input.toLowerCase();
     const results = [];
 
     const prevDate = Number(new Date());
