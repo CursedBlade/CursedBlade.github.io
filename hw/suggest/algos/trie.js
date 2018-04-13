@@ -48,12 +48,12 @@ class Trie {
 
         // перебираем слова
         for(let i = 0; i < words.length; i++) {
+            const currentWord = words[i];
             // перебираем все суффиксы слова
-            for (let k = 0; k < words[i].length; k++) {
-                const currentWord = words[i].substring(k);
+            for (let k = 0; k < currentWord.length; k++) {
                 let currentNode = trie;
                 // записываем суффикс в дерево
-                for(let j = 0; j < currentWord.length; j++) {
+                for(let j = k; j < currentWord.length; j++) {
                     if (!currentNode.edges[currentWord[j]]) {
                         currentNode.edges[currentWord[j]] = this._createNode();
                         nodeCount++;
