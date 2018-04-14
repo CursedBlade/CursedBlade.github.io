@@ -46,24 +46,19 @@ class Trie {
         const prevDate = Number(new Date());
         let nodeCount = 0;
 
-        // перебираем слова
-        for(let i = 0; i < words.length; i++) {
-            const currentWord = words[i];
-            // перебираем все суффиксы слова
-            for (let k = 0; k < currentWord.length; k++) {
+        for(let i = 0; i < words.length; i++) { // перебираем слова
+            const currentWord = words[i].toLowerCase();
+            for (let k = 0; k < currentWord.length; k++) { // перебираем все суффиксы слова
                 let currentNode = trie;
-                // записываем суффикс в дерево
-                for(let j = k; j < currentWord.length; j++) {
+                for(let j = k; j < currentWord.length; j++) { // записываем суффикс в дерево
                     if (!currentNode.edges[currentWord[j]]) {
                         currentNode.edges[currentWord[j]] = this._createNode();
                         nodeCount++;
                     }
                     currentNode = currentNode.edges[currentWord[j]];
                 }
-                // запоминаем индекс строки
-                currentNode.wordEnds.push(i);
+                currentNode.wordEnds.push(i); // запоминаем индекс строки в последнем символе
             }
-
         }
 
         console.log(trie);
